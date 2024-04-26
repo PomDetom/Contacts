@@ -44,13 +44,16 @@ int main()
 			add_infor(&con);
 			break;
 		case DEL:
-			//del_infor(&con);
+			del_infor(&con);
 			break;
 		case MODIFY:
+			modify_infor(&con);
 			break;
 		case SEARCH:
+			search_contacts(&con);
 			break;
 		case SORT:
+			sort_contacts(&con);
 			break;
 		case SHOW:
 			show_contacts(&con);

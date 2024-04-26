@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 enum INFOR
 {
@@ -39,4 +40,13 @@ void show_contacts(const contacts* con);
 void add_infor(contacts* con);
 
 //删除联系人
-//void del_infor(contacts* con);
+void del_infor(contacts* con);
+
+//修改联系人
+void modify_infor(contacts* con);
+
+//查找联系人
+void search_contacts(contacts* con);
+
+//排序联系人
+void sort_contacts(contacts* con);
