@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <errno.h>
 
 enum INFOR
 {
@@ -32,13 +33,13 @@ typedef struct contacts
 }contacts;
 
 //初始化通讯录
-void init_contacts(contacts* con);
+int init_contacts(contacts* con);
 
 //打印通讯录
 void show_contacts(const contacts* con);
 
 //添加联系人
-void add_infor(contacts* con);
+int add_infor(contacts* con);
 
 //删除联系人
 void del_infor(contacts* con);
@@ -51,3 +52,6 @@ void search_contacts(contacts* con);
 
 //排序联系人
 void sort_contacts(contacts* con);
+
+//销毁通讯录
+void destory_contacts(contacts* con);

@@ -3,11 +3,17 @@
 #include "contacts.h"
 
 //初始化
-void init_contacts(contacts* con)
+int init_contacts(contacts* con)
 {
-	
+	con->data = (infor*)calloc(3, sizeof(infor));
+	if (con->data == NULL)
+	{
+		printf("init_contacts::%s\n", strerror(errno));
+		return 1;
+	} 
 	con->count = 0;
 	con->capacity = 3;
+	return 0;
 }
 
 //打印
@@ -35,30 +41,42 @@ void show_contacts(const contacts* con)
 	}
 }
 
-//添加
-void add_infor(contacts* con)
+//扩容
+int expansion(contacts* con)
 {
-	if (con->count == max_data)
+	infor* str = (infor*)realloc(con->data, (con->capacity + 2) * sizeof(infor));
+	if (str == NULL)
 	{
-		printf("通讯录已满\n");
+		printf("expansion::%s\n", strerror(errno));
+		return 1;
 	}
-	else
-	{
-		printf("开始添加第%d个联系人\n", con->count + 1);
+	con->data = str;
+	con->capacity += 2;
+	printf("扩容成功!\n");
+	return 0;
+}
 
-		printf("请输入姓名：");
-		scanf("%s", con->data[con->count].name);
-		printf("请输入年龄：");
-		scanf("%d", &con->data[con->count].age);
-		printf("请输入性别：");
-		scanf("%s", con->data[con->count].sex);
-		printf("请输入电话：");
-		scanf("%s", con->data[con->count].tel);
-		printf("请输入地址：");
-		scanf("%s", con->data[con->count].address);
-		con->count++;
-		printf("添加成功！\n");
+//添加
+int add_infor(contacts* con)
+{
+	if (con->count == con->capacity)
+	{
+		expansion(con);
 	}
+	printf("开始添加第%d个联系人\n", con->count + 1);
+
+	printf("请输入姓名：");
+	scanf("%s", con->data[con->count].name);
+	printf("请输入年龄：");
+	scanf("%d", &con->data[con->count].age);
+	printf("请输入性别：");
+	scanf("%s", con->data[con->count].sex);
+	printf("请输入电话：");
+	scanf("%s", con->data[con->count].tel);
+	printf("请输入地址：");
+	scanf("%s", con->data[con->count].address);
+	con->count++;
+	printf("添加成功！\n");
 }
 
 //查找姓名
@@ -217,4 +235,11 @@ void sort_contacts(contacts* con)
 			break;
 		}
 	}
+}
+
+//销毁
+void destory_contacts(contacts* con)
+{
+	free(con->data);
+	con->data = NULL;
 }

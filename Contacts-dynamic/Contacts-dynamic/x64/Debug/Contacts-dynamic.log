@@ -1,0 +1,3 @@
+﻿  contacts.c
+D:\My_Repository\Contacts\Contacts-dynamic\Contacts-dynamic\contacts.c(80,1): warning C4716: “add_infor”: 必须返回一个值
+  Contacts-dynamic.vcxproj -> D:\My_Repository\Contacts\Contacts-dynamic\x64\Debug\Contacts-dynamic.exe

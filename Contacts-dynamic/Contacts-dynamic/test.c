@@ -59,6 +59,7 @@ int main()
 			show_contacts(&con);
 			break;
 		case EXIT:
+			destory_contacts(&con);
 			break;
 		default:
 			printf("选择错误，重新选择。\n");
